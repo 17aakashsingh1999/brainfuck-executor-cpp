@@ -13,9 +13,9 @@ void help()
 
 bool verify(vector<char> source)
 {
-    stack<bool> brackets;
+    //stack<bool> brackets;
     // 0 for [, 1 for ]
-    for (int i = 0; i < source.size(); i++)
+    /*for (int i = 0; i < source.size(); i++)
     {
         if (source[i] != '[' || source[i] != ']')
             continue;
@@ -29,11 +29,56 @@ bool verify(vector<char> source)
                 return 0;
         }
     }
-    return 1;
+    return 1;*/
+    int st = 0;  // st stands for stack
+    for(int i=0;i < source.size(); i++)
+    {
+        if(source[i] == '[') st++;
+        else if(source[i] == ']') st--;
+        if(st < 0) return 0;
+    }
+    if(st == 0) return 1;
+    return 0;
 }
 
-void filter(vector<char> source)
+void filter(vector<char>& source)
 {
+    int i;
+    char chars[] = {'<', '>', '+', '-', ',', '.', '[', ']'};
+    vector<char>::iterator it,it2;
+    //removes comments from source
+    for(it=source.begin();it+1 != source.end();it++)
+    {
+        if(*it == '/' && *(it+1) == '*')
+        {
+            //search for comment end
+            for(it2 = it+2; it2+1 != source.end(); it2++)
+            {
+                if(*it2 == '*' && *(it2+1) == '/')break;
+            }
+            if(it2+1 == source.end())
+            {
+                cout<<"Comment not closed error.\n";
+                return;
+            }
+            source.erase(it,it2+1);
+            it--;
+        }
+    }
+    //removes extra chars from source
+    for(it=source.begin(); it != source.end(); it++)
+    {
+        for(i=0;i<8;i++)
+        {
+            if(*it == chars[i]) break;
+        }
+        if(i == 8)
+        {
+            cout<<"erased "<<*it<<endl;
+            source.erase(it);
+            it--;
+        }
+    }
 }
 
 void execute(vector<char> source)
@@ -133,5 +178,6 @@ int main(int argc, char *argv[])
         return 0;
     }
     filter(source); //filter out comments and other characters
+
     execute(source);
 }
