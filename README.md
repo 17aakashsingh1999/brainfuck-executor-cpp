@@ -1,4 +1,4 @@
-# brainfuck-executor-cpp
+# brainF*** Intrepreter 
 This is a small cpp program to execute brainfuck(esoteric) code.
 
 An example file helloworld.bf is provided.
