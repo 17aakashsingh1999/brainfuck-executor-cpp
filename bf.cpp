@@ -19,7 +19,7 @@ bool verify(vector<char> source)  //function to check for correct bracket sequen
 {
     int st = 0;  // st stands for stack
     /* Increment st whenever [ is encountered and decrement st whenever ] is encountered.
-       At every step check if st is less than 0. For a correct sequence of brackets st can never be 0
+       At every step check if st is less than 0. For a correct sequence of brackets st can never be less than 0
        as when reading character by character the number of [ can't exceed number of ] at any point in time.
        In the end st should be 0 as total number of [ is equal to total number of ] */
     for(int i=0;i < source.size(); i++)
