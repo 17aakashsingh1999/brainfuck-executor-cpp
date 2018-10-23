@@ -9,4 +9,4 @@ To run the program cd to the directory containing the files and type:
 On other platforms compile the cpp file:
 1. Open terminal or bash
 2. type ```g++ bf.cpp -o bf```
-3. run ```./bf helloworld.bf```
+3. asdfdfgasgeea
